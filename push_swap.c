@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:53:20 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/08 20:05:39 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:51:53 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int	main(int ac, char **av)
 		s = ft_split(str2, ' ');
 		free(str2);
 		if (ckeck_args(s) == 0)
+		{
 			exit(1);
+		}
 		i = 0;
 		while (s[i])
 		{
@@ -51,14 +53,7 @@ int	main(int ac, char **av)
 			free(s[i]);
 		}
 		free(s);
-		if (i < 3)
-			sort2(&stack_a);
-		if (i == 3)
-			sort3(&stack_a);
-		if (i > 3 && i < 6)
-			sort5(&stack_a, &stack_b);
-		if (i > 5)
-			sort(&stack_a, &stack_b);
+		sort(&stack_a, &stack_b, i);
 	}
 	else
 		exit(1);

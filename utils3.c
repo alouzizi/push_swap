@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:37:24 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/08 20:55:21 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/12 15:06:04 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	real_sorting(t_node **a, t_node **b, int best, int index)
 	if (best == 0)
 	{
 		smart_push(&*a, &*b, j, 'a');
-		smart_push(&*a, &*b, index, 'b');
+		smart_push(&*b, &*a, index, 'b');
 		return ;
 	}
 	if (best == 1)
@@ -37,14 +37,7 @@ void	real_sorting(t_node **a, t_node **b, int best, int index)
 			rotate(&*b, 'b');
 	}
 	if (best == 2)
-	{
-		while ((*b)->data != data && (*a)->data != d)
-			double_rules(&*a, &*b, 3);
-		while ((*a)->data != d)
-			reverse_rotate(&*a, 'a');
-		while ((*b)->data != data)
-			reverse_rotate(&*b, 'b');
-	}
+		min_instructions(&*a, &*b, d, data);
 	top_totop(&*b, &*a, 'a');
 }
 

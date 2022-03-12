@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:41:06 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/08 20:40:07 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/12 12:16:52 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,40 +117,21 @@ void	smart_push(t_node **a, t_node **b, int index, char c)
 	int		j;
 
 	i = 0;
-	if (c == 'a')
-		temp = *a;
-	if (c == 'b')
-		temp = *b;
+	temp = *a;
 	j = index;
-	while (temp->next)
-	{
-		temp = temp->next;
-		i++;
-	}
+	i = lent(&temp) - 1;
 	if (i / 2 >= j)
 	{
-		while (j)
-		{
-			if (c == 'a')
-				rotate(&*a, 'a');
-			else if (c == 'b')
-				rotate(&*b, 'b');
-			j--;
-		}
+		while (j--)
+			rotate(&*a, c);
 	}
 	else if (i / 2 < j)
 	{
 		j = i - j + 1;
-		while (j > 0)
-		{	
-			if (c == 'a')
-				reverse_rotate(&*a, 'a');
-			if (c == 'b')
-				reverse_rotate(&*b, 'b');
-			j--;
-		}
+		while (j--)
+			reverse_rotate(&*a, c);
 	}
 	if (c == 'b')
-		top_totop(&*b, &*a, 'a');
+		top_totop(&*a, &*b, 'a');
 	return ;
 }

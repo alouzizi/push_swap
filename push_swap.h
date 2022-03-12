@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:29:00 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/08 20:29:58 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/12 15:04:45 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	double_rules(t_node **stack_a, t_node **stack_b, int s);
 void	sort3(t_node **top);
 void	sort2(t_node **top);
 void	sort5(t_node **stack_a, t_node **stack_b);
-void	sort(t_node **stack_a, t_node **stack_b);
+void	sort_all(t_node **stack_a, t_node **stack_b);
 int		index_min(t_node **stack);
 void	min_push(t_node **stack_a, t_node **stack_b);
 int		index_max(t_node **stack);
@@ -59,4 +59,9 @@ int		get_data_by_index(int index, t_node **stack);
 void	real_sorting(t_node **a, t_node **b, int best, int index);
 int		min(t_node **stack);
 int		max(t_node **stack);
+void	sort(t_node **a, t_node **b, int i);
+int		max_index(int *s, int l);
+int		*get_subscoinc_data(int *index, int n, int *s);
+int		*list_to_tab(t_node **list);
+void	min_instructions(t_node	**a, t_node **b, int d, int data);
 #endif

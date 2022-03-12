@@ -7,7 +7,8 @@ SRC = pp.c\
 	utils0.c\
 	utils1.c\
 	utils2.c\
-	utils3.c
+	utils3.c\
+	utils4.c
 CC = cc
 
 LIBFT = ./libft/libft.a

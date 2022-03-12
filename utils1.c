@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 00:01:20 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/08 20:36:30 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/12 12:32:59 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,29 +107,19 @@ int	*long_subscoince(int *arr, int n, int *l)
 	{
 		lis[i] = 1;
 		j = 0;
-		while (j < i)
+		while (j++ < i)
 		{
 			if (arr[i] > arr[j] && lis[i] <= lis[j] + 1)
 			{
 				lis[i] = lis[j] + 1;
 				prev[p] = j;
 			}
-			j++;
 		}
 		p++;
 		i++;
 	}
-	j = 1;
-	i = lis[0];
-	while (j < n)
-	{
-		if (i < lis[j])
-		{
-			i = lis[j];
-			prev[0] = j;
-		}
-		j++;
-	}
-	*l = i;
+	prev[0] = max_index(lis, n);
+	*l = the_big(lis, n);
+	free(lis);
 	return (prev);
 }

@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:25:41 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/02/26 18:06:52 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:59:39 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,8 @@ int	ckeck_args(char **s)
 	if (check1(s) == 0 || check2(s) == 0)
 		return (0);
 	else
+	{
+		write(3, "Error\n", 6);
 		return (1);
+	}
 }
