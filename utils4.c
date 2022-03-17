@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 09:49:16 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/17 21:13:49 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:36:16 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,21 @@ void	long_subscoince_2(int *arr, int n, int **prev, int **lis)
 		p++;
 		i++;
 	}	
+}
+
+int	is_sorted(t_node **stack_a)
+{
+	t_node	*temp;
+	int		i;
+
+	temp = (*stack_a)->next;
+	i = (*stack_a)->data;
+	while (temp)
+	{
+		if (i > temp->data)
+			return (1);
+		i = temp->data;
+		temp = temp->next;
+	}
+	return (0);
 }
