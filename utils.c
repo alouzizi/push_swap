@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pp.c                                               :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:49:36 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/15 11:19:37 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:19:30 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,6 @@ void	push(t_node **head, int data)
 	}
 }
 
-int	pop(t_node **head)
-{
-	t_node	*temp;
-	t_node	*last;
-	int		data;
-
-	if (head == NULL)
-	{
-		printf("stack Underflow");
-		exit (1);
-	}
-	temp = *head;
-	last = *head;
-	while (last->next)
-		last = last->next;
-	data = last->data;
-	free(last);
-	while (temp->next->next)
-		temp = temp->next;
-	temp->next = NULL;
-	free (temp);
-	temp = NULL;
-	return (data);
-}
-
 void	join_arg(int ac, char **av, char **str2)
 {
 	int		i;
@@ -76,4 +51,58 @@ void	join_arg(int ac, char **av, char **str2)
 		free(str);
 	}
 	return ;
+}
+
+void	sort(t_node **a, t_node **b, int i)
+{
+	if (is_sorted(&*a) == 0)
+		return ;
+	if (i < 3)
+		sort2(&*a);
+	if (i == 3)
+		sort3(&*a);
+	if (i > 3 && i < 6)
+		sort5(&*a, &*b);
+	if (i > 5)
+		sort_all(&*a, &*b);
+}
+
+int	*list_to_tab(t_node **list)
+{
+	t_node	*temp;
+	int		*s;
+	int		i;
+
+	i = 0;
+	s = malloc(sizeof(int) * lent(&*list));
+	temp = *list;
+	while (temp)
+	{
+		s[i++] = temp->data;
+		temp = temp->next;
+	}
+	return (s);
+}
+
+void	get_subscoinc_data(int *index, int l, int *s, int **data)
+{
+	int	k;
+	int	n;
+	int	i;
+	int	t;
+
+	(*data) = malloc(sizeof(int) * l);
+	k = l;
+	i = index[0];
+	n = 0;
+	t = index[0];
+	while (k-- > 0)
+	{
+		(*data)[n] = s[t];
+		t = index[i];
+		i = index[i];
+		n++;
+	}
+	free(index);
+	free(s);
 }

@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:29:00 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/16 21:49:01 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:18:23 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		check_args(char *s);
 void	swap(t_node **head, char c);
 void	rotate(t_node **head, char c);
 void	reverse_rotate(t_node **head, char c);
-int		pop(t_node **head);
 void	push(t_node **head, int data);
 int		check1(char **s);
 int		check2(char **s);
@@ -67,5 +66,6 @@ int		*list_to_tab(t_node **list);
 void	min_instructions(t_node	**a, t_node **b, int d, int data);
 void	join_arg(int ac, char **av, char **str2);
 void	long_subscoince_2(int *arr, int n, int **prev, int **lis);
-void	is_sorted(t_node **stack_a);
+int		is_sorted(t_node **stack_a);
+
 #endif
