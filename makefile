@@ -9,9 +9,13 @@ SRC = pp.c\
 	utils2.c\
 	utils3.c\
 	utils4.c
-CC = cc
+SRC2 = ./get_next_line/get_next_line.c\
+		./get_next_line/get_next_line_utils.c
+CC = gcc
 
 LIBFT = ./libft/libft.a
+
+CHEKER = cheker
 
 HEADER = push_swap.h
 
@@ -22,8 +26,11 @@ all : $(LIBFT) $(HEADER) $(PUSH_SWAP)
 $(PUSH_SWAP) : push_swap.c $(HEADER) $(SRC)
 	$(CC) $(CFLAGS) $(SRC) push_swap.c $(LIBFT) -o push_swap
 
+bonus : cheker.c $(HEADER) $(SRC) $(src2)
+	$(CC) $(SRC) cheker.c $(SRC2) $(LIBFT) -o cheker
+
 $(LIBFT) :
-	make -C./libft
+	Make -C./libft
 
 clean :
 	make clean -C ./libft

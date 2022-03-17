@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 13:52:50 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/12 15:10:57 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/16 21:49:05 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,16 @@ void	sort_all(t_node **a, t_node **b)
 	i = lent(&*a);
 	l = 0;
 	index = long_subscoince(s, i, &l);
-	data = get_subscoinc_data(index, l, s);
+	get_subscoinc_data(index, l, s, &data);
 	l = sizeof(data) / sizeof(int);
 	while (i-- > 0)
 	{
 		if (check_data((*a)->data, data, l) == 0)
 			rotate(&*a, 'a');
-		else if (check_data((*a)->data, data, l) == 1)
+		if (check_data((*a)->data, data, l) == 1)
 			top_totop(&*a, &*b, 'b');
 	}
+	free(data);
 	while (*b)
 		start_sorting(&*a, &*b);
 	i = index_min(&*a);

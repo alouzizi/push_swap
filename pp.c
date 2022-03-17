@@ -6,21 +6,11 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:49:36 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/07 16:55:40 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/15 11:19:37 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	peek(t_node *head)
-{
-	if (head == NULL)
-	{
-		printf("stack Underflow");
-		exit (1);
-	}
-	return (head->data);
-}
 
 void	push(t_node **head, int data)
 {
@@ -69,4 +59,21 @@ int	pop(t_node **head)
 	free (temp);
 	temp = NULL;
 	return (data);
+}
+
+void	join_arg(int ac, char **av, char **str2)
+{
+	int		i;
+	char	*str;
+
+	i = 1;
+	(*str2) = (char *)malloc(sizeof(char));
+	while (i <= ac - 1)
+	{
+		str = ft_strjoin((*str2), av[i++]);
+		free((*str2));
+		(*str2) = ft_strjoin(str, " ");
+		free(str);
+	}
+	return ;
 }

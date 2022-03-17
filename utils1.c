@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 00:01:20 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/12 12:32:59 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/15 11:35:15 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	the_min(int *s, int l)
 			j = s[i];
 		i++;
 	}
+	free(s);
 	return (j);
 }
 
@@ -94,30 +95,10 @@ int	*long_subscoince(int *arr, int n, int *l)
 {
 	int	*lis;
 	int	*prev;
-	int	i;
-	int	j;
-	int	p;
 
-	i = 1;
-	p = 1;
 	lis = malloc(sizeof(int) * n);
 	prev = malloc(sizeof(int) * n);
-	lis[0] = 1;
-	while (i < n)
-	{
-		lis[i] = 1;
-		j = 0;
-		while (j++ < i)
-		{
-			if (arr[i] > arr[j] && lis[i] <= lis[j] + 1)
-			{
-				lis[i] = lis[j] + 1;
-				prev[p] = j;
-			}
-		}
-		p++;
-		i++;
-	}
+	long_subscoince_2(arr, n, &prev, &lis);
 	prev[0] = max_index(lis, n);
 	*l = the_big(lis, n);
 	free(lis);

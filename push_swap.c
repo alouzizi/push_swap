@@ -6,7 +6,7 @@
 /*   By: alouzizi <alouzizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:53:20 by alouzizi          #+#    #+#             */
-/*   Updated: 2022/03/12 14:51:53 by alouzizi         ###   ########.fr       */
+/*   Updated: 2022/03/16 21:49:00 by alouzizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,22 @@ int	main(int ac, char **av)
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
-	char	*str;
 	char	**s;
 	char	*str2;
 	int		i;
-	int		j;
 
 	if (ac >= 2)
 	{
-		str2 = (char *)malloc(sizeof(char));
-		i = 1;
-		while (i <= ac - 1)
-		{
-			str = ft_strjoin(str2, av[i]);
-			free(str2);
-			str2 = ft_strjoin(str, " ");
-			free(str);
-			i++;
-		}
-		i = 0;
-		j = 0;
-		while (str2[i++] == ' ')
-			j++;
-		if (j == (int)ft_strlen(str2))
-			return (0);
+		join_arg(ac, av, &str2);
 		s = ft_split(str2, ' ');
-		free(str2);
-		if (ckeck_args(s) == 0)
-		{
+		if (ckeck_args(s, str2) == 1)
 			exit(1);
-		}
+		free(str2);
 		i = 0;
 		while (s[i])
 		{
-			push(&stack_a, ft_atoi(s[i++]));
-			free(s[i]);
+			push(&stack_a, ft_atoi(s[i]));
+			free(s[i++]);
 		}
 		free(s);
 		sort(&stack_a, &stack_b, i);
