@@ -8,41 +8,49 @@ SRC = utils.c\
 	utils1.c\
 	utils2.c\
 	utils3.c\
-	utils4.c
+	utils4.c\
+	push_swap.c\
 
 BSRC = ./get_next_line/get_next_line.c\
 		./get_next_line/get_next_line_utils.c\
 		bonus_check_args.c\
 		bonus_rules.c\
-		bonus_utils.c
+		bonus_utils.c\
+		checker.c\
 
-CC = gcc
+CC = cc
 
 LIBFT = ./libft/libft.a
 
-CHEKER = checker
+CHECKER = checker
 
 HEADER = push_swap.h
 B_HEADER = push_swap_bonus.h
 
 CFLAGS = -Wall -Wextra -Werror
+OBJS = $(SRC:.c=.o)
+OBJ_B = $(BSRC:.c=.o)
 
-all : $(LIBFT) $(HEADER) $(PUSH_SWAP)
+all : $(PUSH_SWAP)
 
-$(PUSH_SWAP) : $(HEADER) $(SRC)
-	$(CC) $(CFLAGS) $(SRC) push_swap.c $(LIBFT) -o  push_swap
+$(PUSH_SWAP) : $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -I $(HEADER) $(LIBFT) -o $(PUSH_SWAP) $^
 
-bonus : $(B_HEADER) $(BSRC)
-	$(CC) $(CFLAGS) checker.c $(BSRC) $(LIBFT) -o checker
+bonus : $(OBJ_B) $(LIBFT)
+	$(CC) $(CFLAGS) -I $(B_HEADER) $(LIBFT) -o $(CHECKER) $^
+
+%.o : %.c $(HEADER) $(B_HEADER)
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(LIBFT) :
 	Make -C./libft
 
 clean :
 	make clean -C ./libft
+	rm -rf $(OBJS) $(OBJ_B)
 
 fclean : clean
-	rm -rf $(PUSH_SWAP) Push_swap.a $(CHEKER)
+	rm -rf $(PUSH_SWAP) $(CHECKER)
 	make fclean -C ./libft
 
 re : fclean all 
